@@ -3,7 +3,9 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "tsc && node ./bin/www"
+    "start": "node ./bin/www",
+    "dev": "tsc && node ./bin/www",
+    "build": "tcs"
   },
   "main": "./bin/www",
   
