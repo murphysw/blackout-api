@@ -4,8 +4,7 @@
   "private": true,
   "scripts": {
     "start": "node ./bin/www",
-    "dev": "tsc && node ./bin/www",
-    "build": "tsc"
+    "dev": "tsc && node ./bin/www"
   },
   "main": "./bin/www",
   "dependencies": {
