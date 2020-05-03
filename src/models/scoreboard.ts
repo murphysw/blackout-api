@@ -23,8 +23,12 @@ export default class Scoreboard {
     }
 
     private refreshTotals(): void {
+        this.totals = {};
         for (let index in this.scores) {
             for (let player in this.scores[index]) {
+                if (!this.totals[player]) {
+                    this.totals[player] = 0;
+                }
                 this.totals[player] = this.totals[player] + this.scores[index][player];
             }
         }
