@@ -131,8 +131,14 @@ export default class Round {
                     let trickTaker: string = this.calculateTrickTaker(); // calculate the winner of the hand
                     this.finishHand(trickTaker);
                 }
-            }            
+            } else {
+                throw new Error('INVALID');
+            }        
         }
+    }
+
+    public getProjectHandWinner(): string {
+        return this.calculateTrickTaker();
     }
 
     public getPlayerIndex(player_id: string): number {
@@ -161,6 +167,9 @@ export default class Round {
     }
 
     private calculateTrickTaker(): string {
+        if (this.current_hand.length === 0) {
+            return '';
+        }
         let winning_card: PlayedCard = this.current_hand[0];
         this.current_hand.forEach(card => {
             if (!winning_card.isBetterCard(card, this.deck.getTrump().getSuit())) {

@@ -8,7 +8,8 @@ export default class GameController {
     }
 
     static async initializeGame(req:any, res:any) {
-        let id: string = GameService.initializeGame();  
+        let name: string = req.body.name;
+        let id: string = GameService.initializeGame(name);  
         res.json({game_id: id})
       };
 

@@ -7,8 +7,9 @@ const game_1 = __importDefault(require("../models/game"));
 const card_1 = __importDefault(require("../models/card"));
 let games = {};
 class GameService {
-    static initializeGame() {
+    static initializeGame(name) {
         let game = new game_1.default();
+        game.setGameName(name);
         games[game.getGameId()] = game;
         return game.getGameId();
     }
@@ -67,8 +68,9 @@ class GameService {
     static getCurrentGames() {
         let currentGames = [];
         for (let game in games) {
-            if (!games[game].isGameFinished()) {
-                currentGames.push(game);
+            let gameObject = games[game];
+            if (!gameObject.isGameFinished()) {
+                currentGames.push({ name: gameObject.game_name, id: gameObject.game_id });
             }
         }
         return currentGames;
@@ -122,7 +124,8 @@ class GameService {
                 number_of_decks: game.getNumberOfDecks(),
                 players: game.getPlayers(),
                 tricks_taken: round.getTricksTaken(),
-                trump: round.getTrump()
+                trump: round.getTrump(),
+                projected_hand_winner: round.getProjectHandWinner()
             };
         }
         return gameboard;

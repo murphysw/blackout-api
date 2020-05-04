@@ -20,6 +20,12 @@ class Game {
     getGameId() {
         return this.game_id;
     }
+    getGameName() {
+        return this.game_name;
+    }
+    setGameName(name) {
+        this.game_name = name;
+    }
     getPlayers() {
         let players = [];
         for (let key in this.players) {

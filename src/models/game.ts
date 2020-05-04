@@ -5,6 +5,7 @@ import Scoreboard from './scoreboard';
 
 export default class Game {    
     game_id: string;
+    game_name: string;
     players: {[player_id: string]: Player} = {};    
     game_started: boolean = false;
     game_finished: boolean = false;
@@ -20,6 +21,14 @@ export default class Game {
 
     public getGameId(): string {
         return this.game_id;
+    }
+
+    public getGameName(): string {
+        return this.game_name
+    }
+
+    public setGameName(name: string): void {
+        this.game_name = name;
     }
 
     public getPlayers(): Player[] {

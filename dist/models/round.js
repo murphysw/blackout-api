@@ -106,7 +106,13 @@ class Round {
                     this.finishHand(trickTaker);
                 }
             }
+            else {
+                throw new Error('INVALID');
+            }
         }
+    }
+    getProjectHandWinner() {
+        return this.calculateTrickTaker();
     }
     getPlayerIndex(player_id) {
         return this.player_list.findIndex(p => p.id == player_id);
@@ -129,6 +135,9 @@ class Round {
         this.tricks_taken[player_id] = this.tricks_taken[player_id] ? this.tricks_taken[player_id] + 1 : 1;
     }
     calculateTrickTaker() {
+        if (this.current_hand.length === 0) {
+            return '';
+        }
         let winning_card = this.current_hand[0];
         this.current_hand.forEach(card => {
             if (!winning_card.isBetterCard(card, this.deck.getTrump().getSuit())) {

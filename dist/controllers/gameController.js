@@ -22,7 +22,8 @@ class GameController {
     }
     static initializeGame(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
-            let id = gameService_1.default.initializeGame();
+            let name = req.body.name;
+            let id = gameService_1.default.initializeGame(name);
             res.json({ game_id: id });
         });
     }

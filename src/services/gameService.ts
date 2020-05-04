@@ -11,8 +11,9 @@ import GameboardDisplay from '../viewModels/gameboard';
 let games: {[game_id: string]: Game} = {};
 
 export default class GameService {
-    static initializeGame(): string {
+    static initializeGame(name: string): string {
         let game: Game = new Game();
+        game.setGameName(name);
         games[game.getGameId()] = game;
         return game.getGameId();
     }
@@ -77,11 +78,12 @@ export default class GameService {
         }
     }
 
-    static getCurrentGames(): string[] {
-        let currentGames: string[] = [];
+    static getCurrentGames(): {name:string, id:string}[] {
+        let currentGames: {name:string, id:string}[] = [];
         for (let game in games) {
-            if (!games[game].isGameFinished()) {
-                currentGames.push(game);
+            let gameObject: Game = games[game];
+            if (!gameObject.isGameFinished()) {
+                currentGames.push({name: gameObject.game_name, id: gameObject.game_id});
             }
         }
         return currentGames;
@@ -139,7 +141,8 @@ export default class GameService {
                 number_of_decks: game.getNumberOfDecks(),
                 players: game.getPlayers(),            
                 tricks_taken: round.getTricksTaken(),
-                trump: round.getTrump()
+                trump: round.getTrump(),
+                projected_hand_winner: round.getProjectHandWinner()
             };
         }
         return gameboard;

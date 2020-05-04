@@ -16,6 +16,7 @@ export default interface GameboardDisplay {
     current_player_id: string;
     dealer_id: string;
     leader_id: string;    
+    projected_hand_winner: string;
 }
 
 // export = GameboardDisplay;
