@@ -16,6 +16,7 @@ class Game {
         this.rounds = {};
         this.game_id = Math.round(Math.random() * 10000).toString();
         this.scoreboard = new scoreboard_1.default();
+        this.created_time = Date.now();
     }
     getGameId() {
         return this.game_id;

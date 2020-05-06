@@ -11,12 +11,14 @@ export default class Game {
     game_finished: boolean = false;
     current_round: number = 10;    
     rounds: {[index: number]: Round} = {};    
+    created_time: number;
     deck: Deck;
     scoreboard: Scoreboard;
 
     constructor() {
         this.game_id = Math.round(Math.random() * 10000).toString();
         this.scoreboard = new Scoreboard();
+        this.created_time = Date.now();
     }
 
     public getGameId(): string {

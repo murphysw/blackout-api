@@ -13,6 +13,15 @@ class GameService {
         games[game.getGameId()] = game;
         return game.getGameId();
     }
+    static removeGame(game_id) {
+        let game = games[game_id];
+        if (game && !game.game_started) {
+            delete games[game_id];
+        }
+        else {
+            throw new Error('INVALID');
+        }
+    }
     static addPlayer(game_id, name) {
         let game = games[game_id];
         let id = '';
@@ -70,10 +79,10 @@ class GameService {
         for (let game in games) {
             let gameObject = games[game];
             if (!gameObject.isGameFinished()) {
-                currentGames.push({ name: gameObject.game_name, id: gameObject.game_id });
+                currentGames.push({ name: gameObject.game_name, id: gameObject.game_id, start_date: gameObject.created_time });
             }
         }
-        return currentGames;
+        return currentGames.sort((a, b) => a.start_date - b.start_date);
     }
     static getScoreboard(game_id) {
         let scoreboard;

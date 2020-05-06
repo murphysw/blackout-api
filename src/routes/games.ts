@@ -9,6 +9,9 @@ router.get('/games/', GameController.getCurrentGames);
 /* POST initialize game */
 router.post('/games/', GameController.initializeGame);
 
+/* DELETE remove game */
+router.delete('/games/:game_id', GameController.removeGame);
+
 /* POST add Player */
 router.post('/games/:game_id/players', GameController.addPlayer);
 

@@ -9,6 +9,8 @@ var router = express_1.default.Router();
 router.get('/games/', gameController_1.default.getCurrentGames);
 /* POST initialize game */
 router.post('/games/', gameController_1.default.initializeGame);
+/* DELETE remove game */
+router.delete('/games/:game_id', gameController_1.default.removeGame);
 /* POST add Player */
 router.post('/games/:game_id/players', gameController_1.default.addPlayer);
 /* DELETE remove player */

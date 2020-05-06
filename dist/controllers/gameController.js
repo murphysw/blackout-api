@@ -28,26 +28,45 @@ class GameController {
         });
     }
     ;
+    static removeGame(req, res, next) {
+        return __awaiter(this, void 0, void 0, function* () {
+            let game_id = req.params.game_id;
+            try {
+                gameService_1.default.removeGame(game_id);
+                res.json({});
+            }
+            catch (err) {
+                next(err);
+            }
+        });
+    }
+    ;
     static addPlayer(req, res) {
         let game_id = req.params.game_id;
         let name = req.body.name;
         let player_id = gameService_1.default.addPlayer(game_id, name);
         res.json({ player_id: player_id });
     }
-    static removePlayer(req) {
+    ;
+    static removePlayer(req, res) {
         let game_id = req.params.game_id;
         let player_id = req.params.player_id;
         gameService_1.default.removePlayer(game_id, player_id);
+        res.json({});
     }
-    static finalizeSetup(req) {
+    ;
+    static finalizeSetup(req, res) {
         let game_id = req.params.game_id;
         gameService_1.default.finalizeSetup(game_id);
+        res.json({});
     }
+    ;
     static beginRound(req, res) {
         let game_id = req.params.game_id;
         gameService_1.default.beginRound(game_id);
         res.json();
     }
+    ;
     static placeBid(req, res) {
         let game_id = req.params.game_id;
         let player_id = req.params.player_id;
@@ -55,6 +74,7 @@ class GameController {
         gameService_1.default.placeBid(game_id, player_id, bid);
         res.json();
     }
+    ;
     static playCard(req, res) {
         let game_id = req.params.game_id;
         let player_id = req.params.player_id;
@@ -63,16 +83,19 @@ class GameController {
         gameService_1.default.playCard(game_id, player_id, suit, value);
         res.json();
     }
+    ;
     static finishRound(req, res) {
         let game_id = req.params.game_id;
         gameService_1.default.finishRound(game_id);
         res.json();
     }
+    ;
     static clearTable(req, res) {
         let game_id = req.params.game_id;
         gameService_1.default.clearTable(game_id);
         res.json();
     }
+    ;
 }
 exports.default = GameController;
 // export = GameController;

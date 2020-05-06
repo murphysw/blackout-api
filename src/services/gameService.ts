@@ -18,6 +18,15 @@ export default class GameService {
         return game.getGameId();
     }
 
+    static removeGame(game_id: string): void {
+        let game: Game = games[game_id];
+        if (game && !game.game_started) {
+            delete games[game_id];
+        } else {
+            throw new Error('INVALID');
+        }
+    }
+
     static addPlayer(game_id: string, name: string): string {
         let game: Game = games[game_id];
         let id: string = '';
@@ -78,15 +87,15 @@ export default class GameService {
         }
     }
 
-    static getCurrentGames(): {name:string, id:string}[] {
-        let currentGames: {name:string, id:string}[] = [];
+    static getCurrentGames(): {name:string, id:string, start_date:number}[] {
+        let currentGames: {name:string, id:string, start_date: number}[] = [];
         for (let game in games) {
             let gameObject: Game = games[game];
             if (!gameObject.isGameFinished()) {
-                currentGames.push({name: gameObject.game_name, id: gameObject.game_id});
+                currentGames.push({name: gameObject.game_name, id: gameObject.game_id, start_date: gameObject.created_time});
             }
         }
-        return currentGames;
+        return currentGames.sort((a, b) => a.start_date - b.start_date);
     }
 
     static getScoreboard(game_id: string): any {
