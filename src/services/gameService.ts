@@ -151,7 +151,8 @@ export default class GameService {
                 players: game.getPlayers(),            
                 tricks_taken: round.getTricksTaken(),
                 trump: round.getTrump(),
-                projected_hand_winner: round.getProjectHandWinner()
+                projected_hand_winner: round.getProjectHandWinner(),
+                game_finished: game.isGameFinished()
             };
         }
         return gameboard;
